@@ -78,7 +78,7 @@
         function getShortName($fio)
         {   
             $arr = getPartsFromFullname($fio);
-            return $arr['surname'].' '.mb_substr($arr['name'], 0, 1).'.';
+            return $arr['name'].' '.mb_substr($arr['surname'], 0, 1).'.';
         }
         
         echo '<h3>Преобразуем рандомное ФИО в фамилию и первую букву имени с точкой:</h3>';
@@ -158,7 +158,7 @@
                 $index = mt_rand(0, 10);
                 $gender2 = getGenderFromName($arr[$index]['fullname']);
                 $people2 = getShortName($arr[$index]['fullname']);
-            } while ($gender1 === $gender2);
+            } while (($gender1 === $gender2) or ($gender2 === 0))  ;
             
             $text = $people1.' + '.$people2.' =<br>♡ Идеально на '.(mt_rand(5000, 10000)/100).'% ♡';
             return $text;
